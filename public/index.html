@@ -26,26 +26,31 @@
       firebase.initializeApp(firebaseConfig);
   
   
-  
+      let pathToInSessionTrue = []  
       console.log("====WORKING====" + firebase.app().name);
       firebase.database().ref('/PatientVisitsByDates/').once('value').then(function(snapshot){
-        console.log("snapshot.key=" + snapshot.key)
+        // console.log("snapshot.key=" + snapshot.key)
 
         let data = snapshot.val()
         Object.keys(data).forEach(function(patientName) {
-          console.log("patientName=" + patientName + "\n")
+          // console.log("patientName=" + patientName + "\n")
           let anotherObj = data[patientName]
           Object.keys(anotherObj).forEach(function(date) {
-            console.log(date + "\n")
+            // console.log(date + "\n")
             let anotherObj1 = anotherObj[date]
             Object.keys(anotherObj1).forEach(function(ok1) {
               let anotherObj2 = anotherObj1[ok1]
               // console.log(anotherObj2+"\n")
-              console.log(anotherObj2["inSession"])
+              // console.log("id = " + ok1 + " ==> inSession :" + anotherObj2["inSession"])
+              if (anotherObj2["inSession"] == true) {
+                // console.log(ok1)
+                pathToInSessionTrue.push(ok1)
+              }
             })
           })
         })
       })
+      console.log(pathToInSessionTrue.toString())
     </script>
   </body>
 </html>
