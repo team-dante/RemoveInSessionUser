@@ -26,7 +26,7 @@
       firebase.initializeApp(firebaseConfig);
   
   
-      let pathToInSessionTrue = []  
+      let pathToInSessionTrue = []
       console.log("====WORKING====" + firebase.app().name);
       firebase.database().ref('/PatientVisitsByDates/').once('value').then(function(snapshot){
         // console.log("snapshot.key=" + snapshot.key)
@@ -44,13 +44,29 @@
               // console.log("id = " + ok1 + " ==> inSession :" + anotherObj2["inSession"])
               if (anotherObj2["inSession"] == true) {
                 // console.log(ok1)
-                pathToInSessionTrue.push(ok1)
+                let deletedInfo = [patientName, date, ok1]
+                pathToInSessionTrue.push(deletedInfo)
               }
             })
           })
         })
+      }).then(() => {
+        // console.log(pathToInSessionTrue.toString())
+        for (var eachKey in pathToInSessionTrue) {
+          // console.log(pathToInSessionTrue[eachKey])
+          let reference = '/PatientVisitsByDates/' + pathToInSessionTrue[eachKey][0] 
+          + "/" + pathToInSessionTrue[eachKey][1] + "/" + pathToInSessionTrue[eachKey][2]
+          firebase.database().ref(reference).once('value').then(function(deletedItem) {
+            console.log("DELETING deletedItem=" + JSON.stringify(deletedItem))
+            firebase.database().ref(reference).remove().then(function(done) {
+              console.log("Deleted successfully =>" + JSON.stringify(deletedItem))
+              firebase.database().ref(reference).once('value').once('value').then(function(data) {
+                print("should be null or empty==> " + data)
+              })
+            })
+          })
+        }
       })
-      console.log(pathToInSessionTrue.toString())
     </script>
   </body>
 </html>
