@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>
+      Hi
+    </title>
+  <body>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+  
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+  
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDXL3Kup10E5K2CVUARvrZej2_nGoQ51cM",
+        authDomain: "dante-app-d6cc5.firebaseapp.com",
+        databaseURL: "https://dante-app-d6cc5.firebaseio.com",
+        projectId: "dante-app-d6cc5",
+        storageBucket: "dante-app-d6cc5.appspot.com",
+        messagingSenderId: "199635283277",
+        appId: "1:199635283277:web:b10d9f96623a6deb7edb04"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+  
+  
+  
+      console.log(firebase.app().name);
+      firebase.database().ref('/PatientVisitsByDates/').once('value').then(function(snapshot){
+        console.log("snapshot.key=\n" + snapshot.key)
+        console.log("snaphot.value=\n" + snapshot.val())
+      })
+    </script>
+  </body>
+</html>
+
+
+
