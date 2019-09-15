@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>
-      Hi
+      Remove In Session User
     </title>
   <body>
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
@@ -27,10 +27,24 @@
   
   
   
-      console.log(firebase.app().name);
+      console.log("====WORKING====" + firebase.app().name);
       firebase.database().ref('/PatientVisitsByDates/').once('value').then(function(snapshot){
-        console.log("snapshot.key=\n" + snapshot.key)
-        console.log("snaphot.value=\n" + snapshot.val())
+        console.log("snapshot.key=" + snapshot.key)
+
+        let data = snapshot.val()
+        Object.keys(data).forEach(function(patientName) {
+          console.log("patientName=" + patientName + "\n")
+          let anotherObj = data[patientName]
+          Object.keys(anotherObj).forEach(function(date) {
+            console.log(date + "\n")
+            let anotherObj1 = anotherObj[date]
+            Object.keys(anotherObj1).forEach(function(ok1) {
+              let anotherObj2 = anotherObj1[ok1]
+              // console.log(anotherObj2+"\n")
+              console.log(anotherObj2["inSession"])
+            })
+          })
+        })
       })
     </script>
   </body>
