@@ -77,12 +77,13 @@
           console.log(patientPhoneNum.key)
           var randNum = Math.floor((Math.random() * 3) + 0)
           firebase.database().ref("PatientLocation/" + patientPhoneNum.key).update({
-            room : roomArr[randNum]
+            // roomArr[randNum] or "Private"
+            room : "Private"
           })
         })
       })
 
-      
+
     </script>
   </body>
 </html>
