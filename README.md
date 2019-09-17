@@ -4,8 +4,7 @@ How to run this Javascript app:
 3. Open browser and type localhost:5000
 4. Open browser's console to see the result.
 
-Check the file "firebase.json" if the error is "CANNOT GET /"
-In the file "firebase.json", specific the folder name and location where the html file is contained similar to the code below.
+Check the file "firebase.json" if the error is "CANNOT GET /". In the file "firebase.json", specific the folder name and location where the html file is contained similar to the code below.
 
   "hosting" : {
     "public": "./public"
