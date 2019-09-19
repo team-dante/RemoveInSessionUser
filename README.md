@@ -1,4 +1,4 @@
-How to run this Javascript app:
+How to run this app:
 1. Install Firebase CLI
 2. Navigate to the project folder and type "firebase serve"
 3. Open browser and type localhost:5000
