@@ -69,33 +69,40 @@
       // })
 
 
-      // randomize room in PatientLocation  
-      // var roomArr = ["LA1", "CT", "TLA", "WR"]
-      // firebase.database().ref("PatientLocation").once('value').then(function(patientLocationDict) {
-      //   patientLocationDict.forEach(function(patientPhoneNum) {
-      //     // 123, 456, 789
-      //     console.log(patientPhoneNum.key)
-      //     var randNum = Math.floor((Math.random() * 3) + 0)
-      //     firebase.database().ref("PatientLocation/" + patientPhoneNum.key).update({
-      //       room : "Private"
-      //       // room : roomArr[randNum]
-      //     })
-      //   })
-      // })
-
-      // randomize room in StaffLocation
-      var roomArr = ["LA1", "CT", "TLA"]
-      firebase.database().ref("StaffLocation").once('value').then(function(staffLocationDict) {
-        staffLocationDict.forEach(function(staffPhoneNum) {
-          // 111, 222, 333
-          console.log(staffPhoneNum.key)
+      // randomize room in PatientLocation and specific room
+      var roomArr = ["LA1", "CT", "TLA", "WR"]
+      firebase.database().ref("PatientLocation").once('value').then(function(patientLocationDict) {
+        patientLocationDict.forEach(function(patientPhoneNum) {
+          // 123, 456, 789
+          console.log(patientPhoneNum.key)
           var randNum = Math.floor((Math.random() * 3) + 0)
-          firebase.database().ref("StaffLocation/" + staffPhoneNum.key).update({
+          firebase.database().ref("PatientLocation/" + patientPhoneNum.key).update({
             room : "Private"
             // room : roomArr[randNum]
+            // room : "LA1"
+            // room : "CT"
+            // room : "TLA"
+            // room : "WR"
           })
         })
       })
+
+      // randomize room in StaffLocation and specific room
+      // var roomArr = ["LA1", "CT", "TLA"]
+      // firebase.database().ref("StaffLocation").once('value').then(function(staffLocationDict) {
+      //   staffLocationDict.forEach(function(staffPhoneNum) {
+      //     // 111, 222, 333
+      //     console.log(staffPhoneNum.key)
+      //     var randNum = Math.floor((Math.random() * 3) + 0)
+      //     firebase.database().ref("StaffLocation/" + staffPhoneNum.key).update({
+      //       // room : roomArr[randNum]
+      //       room : "Private"
+      //       // room : "CT"
+      //       // room : "LA1"
+      //       // room : "TLA"
+      //     })
+      //   })
+      // })
 
 
     </script>
